@@ -13,23 +13,26 @@ class User(AbstractUser):
     role = models.IntegerField(null=False)
 
 #------LOCATION---------
+
+#LOCATION BASE
+class LocationBase(models.Model):
+    class Meta:
+        abstract = True
+    name = models.CharField(null=False, max_length=100)
+    category = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    
 #Provincial
 class Provincial(models.Model):
     name = models.CharField(null=False, max_length=100)
     category = models.CharField(max_length=100)
 
 #District
-class District(models.Model):
-    name = models.CharField(null=False, max_length=100)
-    category = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
+class District(LocationBase):
     provincial = models.ForeignKey(Provincial, on_delete=SET_NULL, null=True)
 
 #Ward
-class Ward(models.Model):
-    name = models.CharField(null=False, max_length=100)
-    category = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
+class Ward(LocationBase):
     district = models.ForeignKey(District, on_delete=SET_NULL, null=True)
 
 
@@ -43,9 +46,12 @@ class CategoryService(models.Model):
 class CategoryTravel(models.Model):
     name = models.CharField(null=False, max_length=100)
 
-#Service
-class Service(models.Model):
-    category_service = models.ForeignKey(CategoryService, on_delete=SET_NULL, null=True)
+
+#BASE of SERVICE and TRAVEL
+class ModelBase(models.Model):
+    class Meta:
+        abstract = True
+    
     name = models.CharField(null=False, max_length=100)
     status = models.BooleanField(null=False)
     hotline = models.CharField(max_length=10, null=True)
@@ -61,8 +67,16 @@ class Service(models.Model):
     lat = models.CharField(max_length=100,null=True)
     lng = models.CharField(max_length=100,null=True)
     views = models.IntegerField(null=False)
+
+#Service
+class Service(ModelBase):
+    category_service = models.ForeignKey(CategoryService, on_delete=SET_NULL, null=True) 
     price_min = models.FloatField(null=True)
     price_max = models.FloatField(null=True)
+
+#Travel
+class Travel(ModelBase):
+    category_travel = models.ForeignKey(CategoryTravel,on_delete=SET_NULL, null=True)
 
 #News
 class News(models.Model):
@@ -75,64 +89,48 @@ class News(models.Model):
     user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
     image = models.CharField(max_length=100,null=True)
 
-#Travel
-class Travel(models.Model):
-    category_travel = models.ForeignKey(CategoryTravel,on_delete=SET_NULL, null=True)
-    name = models.CharField(null=False, max_length=100)
-    status = models.BooleanField(null=False)
-    content = models.TextField(max_length=1000,null=True)
-    time_open = models.TimeField(null=False)
-    time_close = models.TimeField(null=False)
+
+#IMAGES BASE
+class ImagesBase(models.Model):
+    class Meta:
+        abstract = True
+    
+    image = models.CharField(max_length=100,null=True)
+    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
-    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
-    ward = models.ForeignKey(Ward,on_delete=SET_NULL,null=True)
-    image = models.CharField(max_length=100,null=True)
-    address = models.CharField(max_length=100,null=True)
-    hotline = models.CharField(max_length=10, null=True)
-    lat = models.CharField(max_length=100,null=True)
-    lng = models.CharField(max_length=100,null=True)
-    views = models.IntegerField(null=False)
 
 #Images of Service
-class ImagesService(models.Model):
-    image = models.CharField(max_length=100,null=True)
-    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
+class ImagesService(ImagesBase):
     service = models.ForeignKey(Service,on_delete=SET_NULL,null=True)
-    date_add = models.TimeField(auto_now_add=True)
-    date_update = models.TimeField(auto_now=True)
+   
 
 #Images of Travel
-class ImagesTravel(models.Model):
-    image = models.CharField(max_length=100,null=True)
-    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
+class ImagesTravel(ImagesBase):
     travel = models.ForeignKey(Travel,on_delete=SET_NULL,null=True)
+
+#REVIEW BASE
+class BaseReview(models.Model):
+    class Meta:
+        abstract = True
+    
+    content = models.TextField(max_length=1000,null=True)
+    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
 
 #Review Travel
-class ReviewTravel(models.Model):
-    content = models.TextField(max_length=1000,null=True)
-    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
+class ReviewTravel(BaseReview):
     travel = models.ForeignKey(Travel,on_delete=SET_NULL,null=True)
-    date_add = models.TimeField(auto_now_add=True)
-    date_update = models.TimeField(auto_now=True)
+   
 
 #Review Service
-class ReviewService(models.Model):
-    content = models.TextField(max_length=1000,null=True)
-    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
+class ReviewService(BaseReview):
     service = models.ForeignKey(Service,on_delete=SET_NULL,null=True)
-    date_add = models.TimeField(auto_now_add=True)
-    date_update = models.TimeField(auto_now=True)
 
-#Comment
-class Comment(models.Model):
-    content = models.TextField(max_length=1000,null=True)
-    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
+#Comment News
+class Comment(BaseReview):
     news = models.ForeignKey(News,on_delete=SET_NULL,null=True)
-    date_add = models.TimeField(auto_now_add=True)
-    date_update = models.TimeField(auto_now=True)
 
 
 
