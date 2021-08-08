@@ -20,6 +20,28 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
+
+class Provincial(models.Model):
+    name = models.CharField(null=False, max_length=100)
+    category = models.CharField(null=False, max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class District(models.Model):
+    name = models.CharField(null=False, max_length=100)
+    provincial = models.ForeignKey(Provincial,on_delete=SET_NULL,null=True)
+
+    def __str__(self):
+        return self.name
+
+class Ward(models.Model):
+    name = models.CharField(null=False, max_length=100)
+    district = models.ForeignKey(District,on_delete=SET_NULL,null=True)
+
+    def __str__(self):
+        return self.name
+
 #-------SERVICE AND TRAVEL-----------
 #Category Service
 class CategoryHotel(models.Model):
@@ -46,14 +68,10 @@ class ModelBase(models.Model):
     content = RichTextField()
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
-    time_open = models.TimeField(null=False)
-    time_close = models.TimeField(null=False)
     image = models.ImageField(default=None, upload_to='images/%Y/%m')
     address = models.CharField(max_length=100,null=True)
     views = models.IntegerField(null=False)
     location = models.ForeignKey(Location,on_delete=SET_NULL,null=True)
-    time = models.CharField(max_length=100, null=True)
-    traffic = models.CharField(max_length=100, null=True)
     price = FloatField(default=0)
 
     def __str__(self):
@@ -61,10 +79,16 @@ class ModelBase(models.Model):
 
 #Service
 class Hotel(ModelBase):
-    category_service = models.ForeignKey(CategoryHotel, on_delete=SET_NULL, null=True) 
+    star = models.IntegerField(null=True)
+    category_hotel = models.ForeignKey(CategoryHotel, on_delete=SET_NULL, null=True)
+    provincial = models.ForeignKey(Provincial,on_delete=SET_NULL, null=True)
+    district = models.ForeignKey(District,on_delete=SET_NULL, null=True)
+    ward = models.ForeignKey(Ward,on_delete=SET_NULL, null=True)
 
 #Travel
 class Travel(ModelBase):
+    time = models.CharField(max_length=100, null=True)
+    traffic = models.CharField(max_length=100, null=True)
     category_travel = models.ForeignKey(CategoryTravel,on_delete=SET_NULL, null=True)
 
 #News

@@ -26,4 +26,8 @@ admin.site.register(ImagesTravel)
 admin.site.register(ReviewTravel)
 admin.site.register(ReviewHotel)
 admin.site.register(Comment)
+admin.site.register(Provincial)
+admin.site.register(District)
+admin.site.register(Ward)
+
 
