@@ -1,51 +1,39 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models.base import Model
 from django.db.models.deletion import SET_NULL
+from django.db.models.fields import FloatField
+from ckeditor.fields import RichTextField
+
 
 #User
 class User(AbstractUser):
     email = models.CharField(null=False, unique=True, max_length=100)
-    status = models.BooleanField()
+    status = models.BooleanField(default=1)
     password = models.CharField(null=False, max_length=100)
-    last_name = models.CharField(max_length=100, null=False)
-    first_name = models.CharField(max_length=100, null=False)
-    role = models.IntegerField(null=False)
+    last_name = models.CharField(max_length=100, null=True)
+    first_name = models.CharField(max_length=100, null=True)
 
 #------LOCATION---------
-
-#LOCATION BASE
-class LocationBase(models.Model):
-    class Meta:
-        abstract = True
+class Location(models.Model):
     name = models.CharField(null=False, max_length=100)
-    category = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
-    
-#Provincial
-class Provincial(models.Model):
-    name = models.CharField(null=False, max_length=100)
-    category = models.CharField(max_length=100)
 
-#District
-class District(LocationBase):
-    provincial = models.ForeignKey(Provincial, on_delete=SET_NULL, null=True)
-
-#Ward
-class Ward(LocationBase):
-    district = models.ForeignKey(District, on_delete=SET_NULL, null=True)
-
+    def __str__(self):
+        return self.name
 
 #-------SERVICE AND TRAVEL-----------
 #Category Service
-class CategoryService(models.Model):
+class CategoryHotel(models.Model):
     name = models.CharField(null=False, max_length=100)
-    category_parent = models.BooleanField(null=False)
+
+    def __str__(self):
+        return self.name
 
 #Category of Travel
 class CategoryTravel(models.Model):
     name = models.CharField(null=False, max_length=100)
 
+    def __str__(self):
+        return self.name
 
 #BASE of SERVICE and TRAVEL
 class ModelBase(models.Model):
@@ -55,24 +43,25 @@ class ModelBase(models.Model):
     name = models.CharField(null=False, max_length=100)
     status = models.BooleanField(null=False)
     hotline = models.CharField(max_length=10, null=True)
-    content = models.TextField(max_length=1000,null=True)
+    content = RichTextField()
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
-    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
     time_open = models.TimeField(null=False)
     time_close = models.TimeField(null=False)
-    ward = models.ForeignKey(Ward,on_delete=SET_NULL,null=True)
-    image = models.CharField(max_length=100,null=True)
+    image = models.ImageField(default=None, upload_to='images/%Y/%m')
     address = models.CharField(max_length=100,null=True)
-    lat = models.CharField(max_length=100,null=True)
-    lng = models.CharField(max_length=100,null=True)
     views = models.IntegerField(null=False)
+    location = models.ForeignKey(Location,on_delete=SET_NULL,null=True)
+    time = models.CharField(max_length=100, null=True)
+    traffic = models.CharField(max_length=100, null=True)
+    price = FloatField(default=0)
+
+    def __str__(self):
+        return self.name
 
 #Service
-class Service(ModelBase):
-    category_service = models.ForeignKey(CategoryService, on_delete=SET_NULL, null=True) 
-    price_min = models.FloatField(null=True)
-    price_max = models.FloatField(null=True)
+class Hotel(ModelBase):
+    category_service = models.ForeignKey(CategoryHotel, on_delete=SET_NULL, null=True) 
 
 #Travel
 class Travel(ModelBase):
@@ -87,7 +76,10 @@ class News(models.Model):
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
     user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
-    image = models.CharField(max_length=100,null=True)
+    image = models.ImageField(default=None, upload_to='images/%Y/%m')
+    
+    def __str__(self):
+        return self.name
 
 
 #IMAGES BASE
@@ -95,14 +87,17 @@ class ImagesBase(models.Model):
     class Meta:
         abstract = True
     
-    image = models.CharField(max_length=100,null=True)
+    image = models.ImageField(default=None, upload_to='images/%Y/%m')
     user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 #Images of Service
-class ImagesService(ImagesBase):
-    service = models.ForeignKey(Service,on_delete=SET_NULL,null=True)
+class ImagesHotel(ImagesBase):
+    hotel = models.ForeignKey(Hotel,on_delete=SET_NULL,null=True)
    
 
 #Images of Travel
@@ -119,14 +114,17 @@ class BaseReview(models.Model):
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 #Review Travel
 class ReviewTravel(BaseReview):
     travel = models.ForeignKey(Travel,on_delete=SET_NULL,null=True)
    
 
 #Review Service
-class ReviewService(BaseReview):
-    service = models.ForeignKey(Service,on_delete=SET_NULL,null=True)
+class ReviewHotel(BaseReview):
+    hotel = models.ForeignKey(Hotel,on_delete=SET_NULL,null=True)
 
 #Comment News
 class Comment(BaseReview):
