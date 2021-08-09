@@ -96,7 +96,7 @@ class News(models.Model):
     name = models.CharField(null=False, max_length=100)
     views = models.IntegerField(null=False)
     status = models.BooleanField(null=False)
-    content = models.TextField(max_length=1000,null=True)
+    content = RichTextField()
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
     user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
