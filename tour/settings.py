@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tourdb',
-        'USER': 'root',
-        'PASSWORD': 'Talasamset2804',
-        'HOST': ''
+        'USER': 'ducleduong',
+        'PASSWORD': 'talasamset2804',
+        'HOST': 'ducleduong.mysql.pythonanywhere-services.com'
     }
 }
 
