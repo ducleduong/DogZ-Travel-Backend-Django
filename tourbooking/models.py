@@ -79,7 +79,7 @@ class ModelBase(models.Model):
 
 #Service
 class Hotel(ModelBase):
-    star = models.IntegerField(null=True)
+    star = models.IntegerField(null=False,default=0)
     category_hotel = models.ForeignKey(CategoryHotel, on_delete=SET_NULL, null=True)
     provincial = models.ForeignKey(Provincial,on_delete=SET_NULL, null=True)
     district = models.ForeignKey(District,on_delete=SET_NULL, null=True)

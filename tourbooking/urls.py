@@ -5,8 +5,11 @@ from . import views
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('api/travel',views.TravelViewSet)
+router.register('travel',views.TravelViewSet)
+router.register('hotel',views.HotelViewSet)
+router.register('news',views.NewsViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('api/', include(router.urls)),
+    path('', views.index)
 ]

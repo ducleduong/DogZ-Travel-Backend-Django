@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-rikzca+e@th%qgy9hg4d*41oc01jy(s4qmayltutoa!dfkb&ih
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tourrapi.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tourdb',
-        'USER': 'ducleduong',
-        'PASSWORD': 'talasamset2804',
-        'HOST': 'ducleduong.mysql.pythonanywhere-services.com'
+        'USER': 'root',
+        'PASSWORD': 'Talasamset2804',
+        'HOST': ''
     }
 }
 
@@ -135,17 +135,11 @@ CKEDITOR_UPLOAD_PATH = 'images/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
 
 #  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
