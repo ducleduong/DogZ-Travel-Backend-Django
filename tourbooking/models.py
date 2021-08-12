@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models.deletion import SET_NULL
+from django.db.models.deletion import CASCADE, SET_NULL
 from django.db.models.fields import FloatField
 from ckeditor.fields import RichTextField
 
@@ -20,35 +20,6 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
-
-class Provincial(models.Model):
-    name = models.CharField(null=False, max_length=100)
-    category = models.CharField(null=False, max_length=100)
-
-    def __str__(self):
-        return self.name
-
-class District(models.Model):
-    name = models.CharField(null=False, max_length=100)
-    provincial = models.ForeignKey(Provincial,on_delete=SET_NULL,null=True)
-
-    def __str__(self):
-        return self.name
-
-class Ward(models.Model):
-    name = models.CharField(null=False, max_length=100)
-    district = models.ForeignKey(District,on_delete=SET_NULL,null=True)
-
-    def __str__(self):
-        return self.name
-
-#-------SERVICE AND TRAVEL-----------
-#Category Service
-class CategoryHotel(models.Model):
-    name = models.CharField(null=False, max_length=100)
-
-    def __str__(self):
-        return self.name
 
 #Category of Travel
 class CategoryTravel(models.Model):
@@ -72,18 +43,11 @@ class ModelBase(models.Model):
     address = models.CharField(max_length=100,null=True)
     views = models.IntegerField(null=False)
     location = models.ForeignKey(Location,on_delete=SET_NULL,null=True)
+    detail_location = models.CharField(max_length=200, null=True)
     price = FloatField(default=0)
 
     def __str__(self):
         return self.name
-
-#Service
-class Hotel(ModelBase):
-    star = models.IntegerField(null=False,default=0)
-    category_hotel = models.ForeignKey(CategoryHotel, on_delete=SET_NULL, null=True)
-    provincial = models.ForeignKey(Provincial,on_delete=SET_NULL, null=True)
-    district = models.ForeignKey(District,on_delete=SET_NULL, null=True)
-    ward = models.ForeignKey(Ward,on_delete=SET_NULL, null=True)
 
 #Travel
 class Travel(ModelBase):
@@ -105,29 +69,6 @@ class News(models.Model):
     def __str__(self):
         return self.name
 
-
-#IMAGES BASE
-class ImagesBase(models.Model):
-    class Meta:
-        abstract = True
-    
-    image = models.ImageField(default=None, upload_to='images/%Y/%m')
-    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
-    date_add = models.TimeField(auto_now_add=True)
-    date_update = models.TimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
-
-#Images of Service
-class ImagesHotel(ImagesBase):
-    hotel = models.ForeignKey(Hotel,on_delete=SET_NULL,null=True)
-   
-
-#Images of Travel
-class ImagesTravel(ImagesBase):
-    travel = models.ForeignKey(Travel,on_delete=SET_NULL,null=True)
-
 #REVIEW BASE
 class BaseReview(models.Model):
     class Meta:
@@ -144,11 +85,13 @@ class BaseReview(models.Model):
 #Review Travel
 class ReviewTravel(BaseReview):
     travel = models.ForeignKey(Travel,on_delete=SET_NULL,null=True)
-   
 
-#Review Service
-class ReviewHotel(BaseReview):
-    hotel = models.ForeignKey(Hotel,on_delete=SET_NULL,null=True)
+#Rating Travel
+class RatingTravel(models.Model):
+    travel = models.ForeignKey(Travel,on_delete=SET_NULL,null=True)
+    star = models.IntegerField(default=5)
+    user = models.OneToOneField(User,on_delete=CASCADE,unique=True)
+   
 
 #Comment News
 class Comment(BaseReview):

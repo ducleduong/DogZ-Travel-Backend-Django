@@ -16,18 +16,9 @@ class TravelAdmin(admin.ModelAdmin):
 
 admin.site.register(User)
 admin.site.register(Location)
-admin.site.register(CategoryHotel)
 admin.site.register(CategoryTravel)
-admin.site.register(Hotel)
 admin.site.register(Travel,TravelAdmin)
 admin.site.register(News)
-admin.site.register(ImagesHotel)
-admin.site.register(ImagesTravel)
-admin.site.register(ReviewTravel)
-admin.site.register(ReviewHotel)
 admin.site.register(Comment)
-admin.site.register(Provincial)
-admin.site.register(District)
-admin.site.register(Ward)
 
 

@@ -6,8 +6,10 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('travel',views.TravelViewSet)
-router.register('hotel',views.HotelViewSet)
 router.register('news',views.NewsViewSet)
+router.register('comment',views.CommentViewSet)
+router.register('rating',views.RatingViewSet)
+router.register('review', views.ReviewTravelViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),

@@ -12,13 +12,21 @@ class TravelViewSet(viewsets.ViewSet, generics.ListAPIView, generics.RetrieveAPI
     queryset = Travel.objects.filter(status=True)
     serializer_class = TravelSerializer
 
-class HotelViewSet(viewsets.ViewSet, generics.ListAPIView, generics.RetrieveAPIView):
-    queryset = Hotel.objects.filter(status=True)
-    serializer_class = HotelSerializer
-
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.filter(status=True)
     serializer_class = NewsSerializer
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+class ReviewTravelViewSet(viewsets.ModelViewSet):
+    queryset = ReviewTravel.objects.all()
+    serializer_class = ReviewTravelSerializer
+
+class RatingViewSet(viewsets.ModelViewSet):
+    queryset = RatingTravel.objects.all()
+    serializer_class = RatingSerializer
 
 
 
