@@ -11,6 +11,7 @@ router.register('comment',views.CommentViewSet)
 router.register('rating',views.RatingViewSet)
 router.register('review', views.ReviewTourViewSet)
 router.register('like',views.LikeViewSet)
+router.register('user',views.UserViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
