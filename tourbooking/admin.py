@@ -8,16 +8,16 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 class CustomForm(forms.Form):
     content = forms.CharField(widget=CKEditorUploadingWidget)
     class Meta:
-        model = Travel
+        model = Tours
         felds = '__all__'
 
-class TravelAdmin(admin.ModelAdmin):
+class ToursAdmin(admin.ModelAdmin):
     forms = CustomForm
 
 admin.site.register(User)
 admin.site.register(Location)
-admin.site.register(CategoryTravel)
-admin.site.register(Travel,TravelAdmin)
+admin.site.register(CategoryTour)
+admin.site.register(Tours,ToursAdmin)
 admin.site.register(News)
 admin.site.register(Comment)
 

@@ -21,14 +21,14 @@ class Location(models.Model):
         return self.name
 
 
-#Category of Travel
-class CategoryTravel(models.Model):
+#Category of Tour
+class CategoryTour(models.Model):
     name = models.CharField(null=False, max_length=100)
 
     def __str__(self):
         return self.name
 
-#BASE of SERVICE and TRAVEL
+#BASE of SERVICE and Tour
 class ModelBase(models.Model):
     class Meta:
         abstract = True
@@ -49,11 +49,11 @@ class ModelBase(models.Model):
     def __str__(self):
         return self.name
 
-#Travel
-class Travel(ModelBase):
+#Tour
+class Tours(ModelBase):
     time = models.CharField(max_length=100, null=True)
     traffic = models.CharField(max_length=100, null=True)
-    category_travel = models.ForeignKey(CategoryTravel,on_delete=SET_NULL, null=True)
+    category_tour = models.ForeignKey(CategoryTour,on_delete=SET_NULL, null=True)
 
 #News
 class News(models.Model):
@@ -82,13 +82,13 @@ class BaseReview(models.Model):
     def __str__(self):
         return self.name
 
-#Review Travel
-class ReviewTravel(BaseReview):
-    travel = models.ForeignKey(Travel,on_delete=SET_NULL,null=True)
+#Review Tour
+class ReviewTour(BaseReview):
+    tour = models.ForeignKey(Tours,on_delete=SET_NULL,null=True)
 
-#Rating Travel
-class RatingTravel(models.Model):
-    travel = models.ForeignKey(Travel,on_delete=SET_NULL,null=True)
+#Rating Tour
+class RatingTour(models.Model):
+    tour = models.ForeignKey(Tours,on_delete=SET_NULL,null=True)
     star = models.IntegerField(default=5)
     user = models.OneToOneField(User,on_delete=CASCADE,unique=True)
    

@@ -9,17 +9,17 @@ class LocationSerializer(ModelSerializer):
         model = Location
         fields = '__all__'
 
-#Travel
-class CategoryTravelSerializer(ModelSerializer):
+#Tour
+class CategoryTourSerializer(ModelSerializer):
     class Meta:
-        model = CategoryTravel
+        model = CategoryTour
         fields = '__all__'
 
-class TravelSerializer(ModelSerializer):
-    category_travel = CategoryTravelSerializer()
+class ToursSerializer(ModelSerializer):
+    category_tour = CategoryTourSerializer()
     location = LocationSerializer()
     class Meta:
-        model = Travel
+        model = Tours
         fields = '__all__'
 
 
@@ -30,9 +30,9 @@ class NewsSerializer(ModelSerializer):
         fields = '__all__'
 
 #Review
-class ReviewTravelSerializer(ModelSerializer):
+class ReviewTourSerializer(ModelSerializer):
     class Meta:
-        model = ReviewTravel
+        model = ReviewTour
         fields = '__all__'
 
 class CommentSerializer(ModelSerializer):
@@ -42,7 +42,7 @@ class CommentSerializer(ModelSerializer):
 
 class RatingSerializer(ModelSerializer):
     class Meta:
-        model = RatingTravel
+        model = RatingTour
         fields = '__all__'
 
 

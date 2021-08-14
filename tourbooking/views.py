@@ -8,9 +8,9 @@ from .serializers import *
 def index(request):
     return render(request,'index.html')
 
-class TravelViewSet(viewsets.ViewSet, generics.ListAPIView, generics.RetrieveAPIView):
-    queryset = Travel.objects.filter(status=True)
-    serializer_class = TravelSerializer
+class ToursViewSet(viewsets.ViewSet, generics.ListAPIView, generics.RetrieveAPIView):
+    queryset = Tours.objects.filter(status=True)
+    serializer_class = ToursSerializer
 
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.filter(status=True)
@@ -20,12 +20,12 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
-class ReviewTravelViewSet(viewsets.ModelViewSet):
-    queryset = ReviewTravel.objects.all()
-    serializer_class = ReviewTravelSerializer
+class ReviewTourViewSet(viewsets.ModelViewSet):
+    queryset = ReviewTour.objects.all()
+    serializer_class = ReviewTourSerializer
 
 class RatingViewSet(viewsets.ModelViewSet):
-    queryset = RatingTravel.objects.all()
+    queryset = RatingTour.objects.all()
     serializer_class = RatingSerializer
 
 
