@@ -131,11 +131,18 @@ USE_TZ = True
 
 
 MEDIA_ROOT = '%s/tourbooking/static' % BASE_DIR
-CKEDITOR_UPLOAD_PATH = 'images/'
+CKEDITOR_UPLOAD_PATH = '/tourbooking/static/images/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'statics')
+]
 
 # Extra lookup directories for collectstatic to find static files
 

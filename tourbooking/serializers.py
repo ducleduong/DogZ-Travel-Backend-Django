@@ -17,7 +17,7 @@ class CategoryTourSerializer(ModelSerializer):
 
 class ToursSerializer(ModelSerializer):
     category_tour = CategoryTourSerializer()
-    location = LocationSerializer()
+    destination = LocationSerializer()
     class Meta:
         model = Tours
         fields = '__all__'
@@ -44,6 +44,13 @@ class RatingSerializer(ModelSerializer):
     class Meta:
         model = RatingTour
         fields = '__all__'
+
+class LikeSerializer(ModelSerializer):
+    class Meta:
+        model = RatingTour
+        fields = '__all__'
+
+
 
 
 

@@ -1,8 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.base import Model
 from django.db.models.deletion import CASCADE, SET_NULL
 from django.db.models.fields import FloatField
 from ckeditor.fields import RichTextField
+from django.db.models.fields.related import ForeignKey
 
 
 #User
@@ -40,10 +42,9 @@ class ModelBase(models.Model):
     date_add = models.TimeField(auto_now_add=True)
     date_update = models.TimeField(auto_now=True)
     image = models.ImageField(default=None, upload_to='images/%Y/%m')
-    address = models.CharField(max_length=100,null=True)
     views = models.IntegerField(null=False)
-    location = models.ForeignKey(Location,on_delete=SET_NULL,null=True)
-    detail_location = models.CharField(max_length=200, null=True)
+    destination = models.ForeignKey(Location,on_delete=SET_NULL,null=True)
+    detail_destination = models.CharField(max_length=200, null=True)
     price = FloatField(default=0)
 
     def __str__(self):
@@ -96,6 +97,11 @@ class RatingTour(models.Model):
 #Comment News
 class Comment(BaseReview):
     news = models.ForeignKey(News,on_delete=SET_NULL,null=True)
+
+#Like News
+class Like(models.Model):
+    news = models.ForeignKey(News,on_delete=CASCADE)
+    user = models.OneToOneField(User,on_delete=CASCADE,unique=True)
 
 
 

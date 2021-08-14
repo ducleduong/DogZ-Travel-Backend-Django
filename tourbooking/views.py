@@ -28,6 +28,10 @@ class RatingViewSet(viewsets.ModelViewSet):
     queryset = RatingTour.objects.all()
     serializer_class = RatingSerializer
 
+class LikeViewSet(viewsets.ViewSet, generics.RetrieveDestroyAPIView,generics.ListAPIView):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+
 
 
 

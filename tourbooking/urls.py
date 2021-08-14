@@ -10,6 +10,7 @@ router.register('news',views.NewsViewSet)
 router.register('comment',views.CommentViewSet)
 router.register('rating',views.RatingViewSet)
 router.register('review', views.ReviewTourViewSet)
+router.register('like',views.LikeViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
