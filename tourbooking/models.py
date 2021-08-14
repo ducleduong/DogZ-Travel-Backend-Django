@@ -10,7 +10,6 @@ from django.db.models.fields.related import ForeignKey
 #User
 class User(AbstractUser):
     email = models.CharField(null=False, unique=True, max_length=100)
-    status = models.BooleanField(default=1)
     password = models.CharField(null=False, max_length=100)
     last_name = models.CharField(max_length=100, null=True)
     first_name = models.CharField(max_length=100, null=True)
@@ -46,6 +45,7 @@ class ModelBase(models.Model):
     destination = models.ForeignKey(Location,on_delete=SET_NULL,null=True)
     detail_destination = models.CharField(max_length=200, null=True)
     price = FloatField(default=0)
+    price_children = FloatField(default=0)
 
     def __str__(self):
         return self.name
