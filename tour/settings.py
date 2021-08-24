@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-rikzca+e@th%qgy9hg4d*41oc01jy(s4qmayltutoa!dfkb&ih
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
-    'oauth2_provider'
+    'oauth2_provider',
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -63,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'tour.urls'

@@ -13,6 +13,7 @@ class User(AbstractUser):
     password = models.CharField(null=False, max_length=100)
     last_name = models.CharField(max_length=100, null=True)
     first_name = models.CharField(max_length=100, null=True)
+    avatar = models.ImageField(upload_to='avatar/', null = True)
 
 #------LOCATION---------
 class Location(models.Model):

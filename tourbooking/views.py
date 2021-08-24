@@ -7,9 +7,15 @@ from .serializers import *
 def index(request):
     return render(request,'index.html')
 
-class UserViewSet(viewsets.ViewSet, generics.CreateAPIView,generics.RetrieveAPIView,generics.ListAPIView):
+class UserViewSet(viewsets.ViewSet, generics.CreateAPIView,generics.RetrieveAPIView,generics.UpdateAPIView):
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
+
+    def get_permissions(self):
+        if self.action == 'retrieve':
+            return [permissions.IsAuthenticated()]
+        
+        return [permissions.AllowAny()]
 
 
 class ToursViewSet(viewsets.ViewSet, generics.ListAPIView, generics.RetrieveAPIView):
