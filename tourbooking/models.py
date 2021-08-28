@@ -82,7 +82,7 @@ class BaseReview(models.Model):
     date_update = models.TimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.content
 
 #Review Tour
 class ReviewTour(BaseReview):

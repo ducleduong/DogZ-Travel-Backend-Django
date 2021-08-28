@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics, viewsets, request, permissions
+from rest_framework import generics, serializers, viewsets, request, permissions
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
@@ -37,6 +37,12 @@ class CommentViewSet(viewsets.ModelViewSet):
         
         return [permissions.IsAuthenticated()]
 
+    def showListCommentOfNews(request,id):
+        if request.method == 'GET':
+            list = Comment.objects.filter(news=id)
+            serializer = CommentSerializer(list, many=True)
+            return JsonResponse(serializer.data, safe=False)
+
 
 class ReviewTourViewSet(viewsets.ModelViewSet):
     queryset = ReviewTour.objects.all()
@@ -48,8 +54,14 @@ class ReviewTourViewSet(viewsets.ModelViewSet):
         
         return [permissions.IsAuthenticated()]
 
+    def showListReviewOfNews(request,id):
+        if request.method == 'GET':
+            list = ReviewTour.objects.filter(tour=id)
+            serializer = ReviewTourSerializer(list, many=True)
+            return JsonResponse(serializer.data, safe=False)
 
-class RatingViewSet(viewsets.ModelViewSet):
+
+class RatingViewSet(viewsets.ViewSet,generics.ListAPIView,generics.CreateAPIView):
     queryset = RatingTour.objects.all()
     serializer_class = RatingSerializer
 
@@ -59,8 +71,14 @@ class RatingViewSet(viewsets.ModelViewSet):
         
         return [permissions.IsAuthenticated()]
 
+    def showListRatingOfTour(request,id):
+        if request.method == 'GET':
+            list = RatingTour.objects.filter(tour=id)
+            serializer = RatingSerializer(list, many=True)
+            return JsonResponse(serializer.data, safe=False)
 
-class LikeViewSet(viewsets.ViewSet, generics.RetrieveDestroyAPIView,generics.ListAPIView,generics.CreateAPIView):
+
+class LikeViewSet(viewsets.ViewSet,generics.RetrieveDestroyAPIView,generics.ListAPIView,generics.CreateAPIView):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
     
@@ -69,6 +87,12 @@ class LikeViewSet(viewsets.ViewSet, generics.RetrieveDestroyAPIView,generics.Lis
             return [permissions.AllowAny()]
         
         return [permissions.IsAuthenticated()]
+
+    def showListLikeOfNews(request,id):
+        if request.method == 'GET':
+            list = Like.objects.filter(news=id)
+            serializer = LikeSerializer(list, many=True)
+            return JsonResponse(serializer.data, safe=False)
 
 
 

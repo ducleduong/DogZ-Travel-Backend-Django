@@ -1,3 +1,4 @@
+from tourbooking.views import ReviewTourViewSet
 from django.contrib import admin
 from django import forms
 from django.forms import widgets
@@ -20,5 +21,8 @@ admin.site.register(CategoryTour)
 admin.site.register(Tours,ToursAdmin)
 admin.site.register(News)
 admin.site.register(Comment)
+admin.site.register(Like)
+admin.site.register(ReviewTour)
+admin.site.register(RatingTour)
 
 

@@ -117,7 +117,7 @@ CREATE TABLE `django_admin_log` (
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_tourbooking_user_id` FOREIGN KEY (`user_id`) REFERENCES `tourbooking_user` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2021-08-08 12:23:12.515669','1','admin',2,'[{\"changed\": {\"fields\": [\"Last name\", \"First name\"]}}]',6,1),(2,'2021-08-08 13:51:06.534974','1','Location object (1)',1,'[{\"added\": {}}]',20,1),(3,'2021-08-08 13:52:06.677873','1','CategoryTravel object (1)',1,'[{\"added\": {}}]',8,1),(4,'2021-08-08 13:52:38.595959','1','Travel object (1)',1,'[{\"added\": {}}]',12,1),(5,'2021-08-08 14:06:55.815195','2','Hồ Chí Minh',1,'[{\"added\": {}}]',20,1),(6,'2021-08-08 14:07:31.279655','2','Tour du lịch Lục tỉnh miền Tây 4 ngày 3 đêm | Khám phá sông nước Nam Kì',1,'[{\"added\": {}}]',12,1),(7,'2021-08-08 14:07:42.377958','2','Tour du lịch Lục tỉnh miền Tây 4 ngày 3 đêm | Khám phá sông nước Nam Kì',2,'[{\"changed\": {\"fields\": [\"Image\"]}}]',12,1),(8,'2021-08-08 14:11:33.386254','3','Tour du lịch Mỹ Tho – Cần Thơ 2 ngày 1 đêm giá tốt, khởi hành từ TPHCM',1,'[{\"added\": {}}]',12,1),(9,'2021-08-08 14:14:30.508987','4','Tour Cần Giờ 2 ngày 1 đêm khám phá Rừng Sát lịch sử',1,'[{\"added\": {}}]',12,1),(10,'2021-08-08 14:18:18.018124','3','Hà Nội',1,'[{\"added\": {}}]',20,1),(11,'2021-08-08 14:18:41.831087','5','Tour du lịch Quan Lạn 2 ngày 1 đêm | Khám phá miền biển vắng',1,'[{\"added\": {}}]',12,1),(12,'2021-08-08 14:25:09.767784','2','Tour nước ngoài',1,'[{\"added\": {}}]',8,1),(13,'2021-08-08 14:25:14.807696','6','Tour đi Mỹ Tiêm Vắc Xin kết hợp nghỉ dưỡng, khám phá Los Angeles trọn gói 28 ngày',1,'[{\"added\": {}}]',12,1),(14,'2021-08-08 14:31:32.123115','7','Tour Campuchia 4 ngày 3 đêm | Khám phá Siem Reap – Phnom Penh huyền bí',1,'[{\"added\": {}}]',12,1),(15,'2021-08-08 14:39:55.321337','8','Tour du lịch Bali 4 ngày 3 đêm: “Thiên đường nghỉ dưỡng” Bali | Bay Vietnam Airlines',1,'[{\"added\": {}}]',12,1),(16,'2021-08-08 14:47:12.501797','1','Khách sạn trong nước',1,'[{\"added\": {}}]',21,1),(17,'2021-08-08 14:47:26.820677','1','Khách sạn Le Méridien Sài Gòn',1,'[{\"added\": {}}]',22,1),(18,'2021-08-08 15:16:53.362344','1','TP. Hồ Chí Minh',1,'[{\"added\": {}}]',10,1),(19,'2021-08-08 15:19:18.153951','1','Quận 1',1,'[{\"added\": {}}]',9,1),(20,'2021-08-08 15:19:27.923374','1','Bến Nghé',1,'[{\"added\": {}}]',11,1),(21,'2021-08-08 15:19:35.105685','2','Khách sạn Le Méridien Sài Gòn',1,'[{\"added\": {}}]',22,1),(22,'2021-08-08 15:23:55.362111','2','Phạm Ngũ Lão',1,'[{\"added\": {}}]',11,1),(23,'2021-08-08 15:24:12.550283','3','Khách sạn A25 – 20 Bùi Thị Xuân – Quận 1',1,'[{\"added\": {}}]',22,1),(24,'2021-08-08 15:25:54.653739','4','Đà Nẵng',1,'[{\"added\": {}}]',20,1),(25,'2021-08-08 15:26:14.172012','2','Đà Nẵng',1,'[{\"added\": {}}]',10,1),(26,'2021-08-08 15:26:29.546347','2','Sơn Trà',1,'[{\"added\": {}}]',9,1),(27,'2021-08-08 15:26:42.433927','3','Phước Mỹ',1,'[{\"added\": {}}]',11,1),(28,'2021-08-08 15:28:37.291437','4','Khách sạn Golden Light Đà Nẵng',1,'[{\"added\": {}}]',22,1),(29,'2021-08-09 09:21:18.261749','1','[MỚI] Trọn bộ kinh nghiệm du lịch Quy Nhơn tháng 6',1,'[{\"added\": {}}]',16,1),(30,'2021-08-09 09:23:45.552654','2','[Bạn có biết] Đi du lịch Mỹ cần gì? Những thủ tục và giấy tờ cần thiết',1,'[{\"added\": {}}]',16,1),(31,'2021-08-09 09:24:49.923770','2','Khách sạn quốc tế',1,'[{\"added\": {}}]',21,1),(32,'2021-08-09 09:27:08.855674','5','Bangkok',1,'[{\"added\": {}}]',20,1),(33,'2021-08-09 09:27:50.786932','3','Bangkok',1,'[{\"added\": {}}]',10,1),(34,'2021-08-09 09:28:11.390555','3','Phra Nakhon',1,'[{\"added\": {}}]',9,1),(35,'2021-08-09 09:28:24.577159','4','Chana Songkhram',1,'[{\"added\": {}}]',11,1),(36,'2021-08-09 09:28:28.982274','5','Khách sạn Chillax Heritage Thái Lan',1,'[{\"added\": {}}]',22,1),(37,'2021-08-10 15:08:33.566427','5','Khách sạn Chillax Heritage Thái Lan',2,'[{\"changed\": {\"fields\": [\"Status\"]}}]',22,1),(38,'2021-08-14 09:02:31.045457','9','dsfdsfdsf',1,'[{\"added\": {}}]',12,1),(39,'2021-08-14 09:06:16.804072','9','dsfdsfdsf',2,'[{\"changed\": {\"fields\": [\"Image\"]}}]',12,1),(40,'2021-08-14 09:17:27.297996','9','dsfdsfdsf',3,'',12,1),(41,'2021-08-14 09:17:52.929172','10','đasa',1,'[{\"added\": {}}]',12,1),(42,'2021-08-14 09:48:39.837046','10','đasa',2,'[{\"changed\": {\"fields\": [\"Image\"]}}]',12,1),(43,'2021-08-24 13:14:58.395360','3','Tiêu điểm du lịch Châu Á tháng 3/2021',1,'[{\"added\": {}}]',16,1),(44,'2021-08-24 13:20:51.334206','4','[HOT] Đừng bỏ lỡ những vẻ đẹp của du lịch Hà Giang tháng 6',1,'[{\"added\": {}}]',16,1),(45,'2021-08-24 13:23:14.444071','5','Giải mã tọa độ Cát Bà có gì đẹp đáng để tham quan',1,'[{\"added\": {}}]',16,1);
+INSERT INTO `django_admin_log` VALUES (1,'2021-08-08 12:23:12.515669','1','admin',2,'[{\"changed\": {\"fields\": [\"Last name\", \"First name\"]}}]',6,1),(2,'2021-08-08 13:51:06.534974','1','Location object (1)',1,'[{\"added\": {}}]',20,1),(3,'2021-08-08 13:52:06.677873','1','CategoryTravel object (1)',1,'[{\"added\": {}}]',8,1),(4,'2021-08-08 13:52:38.595959','1','Travel object (1)',1,'[{\"added\": {}}]',12,1),(5,'2021-08-08 14:06:55.815195','2','Hồ Chí Minh',1,'[{\"added\": {}}]',20,1),(6,'2021-08-08 14:07:31.279655','2','Tour du lịch Lục tỉnh miền Tây 4 ngày 3 đêm | Khám phá sông nước Nam Kì',1,'[{\"added\": {}}]',12,1),(7,'2021-08-08 14:07:42.377958','2','Tour du lịch Lục tỉnh miền Tây 4 ngày 3 đêm | Khám phá sông nước Nam Kì',2,'[{\"changed\": {\"fields\": [\"Image\"]}}]',12,1),(8,'2021-08-08 14:11:33.386254','3','Tour du lịch Mỹ Tho – Cần Thơ 2 ngày 1 đêm giá tốt, khởi hành từ TPHCM',1,'[{\"added\": {}}]',12,1),(9,'2021-08-08 14:14:30.508987','4','Tour Cần Giờ 2 ngày 1 đêm khám phá Rừng Sát lịch sử',1,'[{\"added\": {}}]',12,1),(10,'2021-08-08 14:18:18.018124','3','Hà Nội',1,'[{\"added\": {}}]',20,1),(11,'2021-08-08 14:18:41.831087','5','Tour du lịch Quan Lạn 2 ngày 1 đêm | Khám phá miền biển vắng',1,'[{\"added\": {}}]',12,1),(12,'2021-08-08 14:25:09.767784','2','Tour nước ngoài',1,'[{\"added\": {}}]',8,1),(13,'2021-08-08 14:25:14.807696','6','Tour đi Mỹ Tiêm Vắc Xin kết hợp nghỉ dưỡng, khám phá Los Angeles trọn gói 28 ngày',1,'[{\"added\": {}}]',12,1),(14,'2021-08-08 14:31:32.123115','7','Tour Campuchia 4 ngày 3 đêm | Khám phá Siem Reap – Phnom Penh huyền bí',1,'[{\"added\": {}}]',12,1),(15,'2021-08-08 14:39:55.321337','8','Tour du lịch Bali 4 ngày 3 đêm: “Thiên đường nghỉ dưỡng” Bali | Bay Vietnam Airlines',1,'[{\"added\": {}}]',12,1),(16,'2021-08-08 14:47:12.501797','1','Khách sạn trong nước',1,'[{\"added\": {}}]',21,1),(17,'2021-08-08 14:47:26.820677','1','Khách sạn Le Méridien Sài Gòn',1,'[{\"added\": {}}]',22,1),(18,'2021-08-08 15:16:53.362344','1','TP. Hồ Chí Minh',1,'[{\"added\": {}}]',10,1),(19,'2021-08-08 15:19:18.153951','1','Quận 1',1,'[{\"added\": {}}]',9,1),(20,'2021-08-08 15:19:27.923374','1','Bến Nghé',1,'[{\"added\": {}}]',11,1),(21,'2021-08-08 15:19:35.105685','2','Khách sạn Le Méridien Sài Gòn',1,'[{\"added\": {}}]',22,1),(22,'2021-08-08 15:23:55.362111','2','Phạm Ngũ Lão',1,'[{\"added\": {}}]',11,1),(23,'2021-08-08 15:24:12.550283','3','Khách sạn A25 – 20 Bùi Thị Xuân – Quận 1',1,'[{\"added\": {}}]',22,1),(24,'2021-08-08 15:25:54.653739','4','Đà Nẵng',1,'[{\"added\": {}}]',20,1),(25,'2021-08-08 15:26:14.172012','2','Đà Nẵng',1,'[{\"added\": {}}]',10,1),(26,'2021-08-08 15:26:29.546347','2','Sơn Trà',1,'[{\"added\": {}}]',9,1),(27,'2021-08-08 15:26:42.433927','3','Phước Mỹ',1,'[{\"added\": {}}]',11,1),(28,'2021-08-08 15:28:37.291437','4','Khách sạn Golden Light Đà Nẵng',1,'[{\"added\": {}}]',22,1),(29,'2021-08-09 09:21:18.261749','1','[MỚI] Trọn bộ kinh nghiệm du lịch Quy Nhơn tháng 6',1,'[{\"added\": {}}]',16,1),(30,'2021-08-09 09:23:45.552654','2','[Bạn có biết] Đi du lịch Mỹ cần gì? Những thủ tục và giấy tờ cần thiết',1,'[{\"added\": {}}]',16,1),(31,'2021-08-09 09:24:49.923770','2','Khách sạn quốc tế',1,'[{\"added\": {}}]',21,1),(32,'2021-08-09 09:27:08.855674','5','Bangkok',1,'[{\"added\": {}}]',20,1),(33,'2021-08-09 09:27:50.786932','3','Bangkok',1,'[{\"added\": {}}]',10,1),(34,'2021-08-09 09:28:11.390555','3','Phra Nakhon',1,'[{\"added\": {}}]',9,1),(35,'2021-08-09 09:28:24.577159','4','Chana Songkhram',1,'[{\"added\": {}}]',11,1),(36,'2021-08-09 09:28:28.982274','5','Khách sạn Chillax Heritage Thái Lan',1,'[{\"added\": {}}]',22,1),(37,'2021-08-10 15:08:33.566427','5','Khách sạn Chillax Heritage Thái Lan',2,'[{\"changed\": {\"fields\": [\"Status\"]}}]',22,1),(38,'2021-08-14 09:02:31.045457','9','dsfdsfdsf',1,'[{\"added\": {}}]',12,1),(39,'2021-08-14 09:06:16.804072','9','dsfdsfdsf',2,'[{\"changed\": {\"fields\": [\"Image\"]}}]',12,1),(40,'2021-08-14 09:17:27.297996','9','dsfdsfdsf',3,'',12,1),(41,'2021-08-14 09:17:52.929172','10','đasa',1,'[{\"added\": {}}]',12,1),(42,'2021-08-14 09:48:39.837046','10','đasa',2,'[{\"changed\": {\"fields\": [\"Image\"]}}]',12,1),(43,'2021-08-24 13:14:58.395360','3','Tiêu điểm du lịch Châu Á tháng 3/2021',1,'[{\"added\": {}}]',16,1),(44,'2021-08-24 13:20:51.334206','4','[HOT] Đừng bỏ lỡ những vẻ đẹp của du lịch Hà Giang tháng 6',1,'[{\"added\": {}}]',16,1),(45,'2021-08-24 13:23:14.444071','5','Giải mã tọa độ Cát Bà có gì đẹp đáng để tham quan',1,'[{\"added\": {}}]',16,1),(46,'2021-08-28 12:55:26.353524','3','Bài viết rất hay',1,'[{\"added\": {}}]',19,1),(47,'2021-08-28 12:55:53.079174','4','bài viết xuất sắc',1,'[{\"added\": {}}]',19,1),(48,'2021-08-28 12:56:23.089412','5','Cho hỏi mình đặt vé du lịch ở đâu ạ ?',1,'[{\"added\": {}}]',19,1),(49,'2021-08-28 13:21:26.228105','1','Like object (1)',1,'[{\"added\": {}}]',26,1),(50,'2021-08-28 13:21:38.371767','2','Like object (2)',1,'[{\"added\": {}}]',26,1),(51,'2021-08-28 13:23:34.486025','1','Chuyến đi tuyệt vời',1,'[{\"added\": {}}]',14,1),(52,'2021-08-28 13:23:59.234854','2','Mong công ty tạo ra thêm nhiều tour như vậy nữa',1,'[{\"added\": {}}]',14,1),(53,'2021-08-28 13:24:15.966661','1','RatingTour object (1)',1,'[{\"added\": {}}]',25,1),(54,'2021-08-28 13:24:25.861664','2','RatingTour object (2)',1,'[{\"added\": {}}]',25,1),(55,'2021-08-28 13:24:34.095256','3','RatingTour object (3)',1,'[{\"added\": {}}]',25,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -440,7 +440,7 @@ CREATE TABLE `tourbooking_comment` (
   KEY `tourbooking_comment_user_id_0a942c0c_fk_tourbooking_user_id` (`user_id`),
   CONSTRAINT `tourbooking_comment_news_id_2095f182_fk_tourbooking_news_id` FOREIGN KEY (`news_id`) REFERENCES `tourbooking_news` (`id`),
   CONSTRAINT `tourbooking_comment_user_id_0a942c0c_fk_tourbooking_user_id` FOREIGN KEY (`user_id`) REFERENCES `tourbooking_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -449,6 +449,7 @@ CREATE TABLE `tourbooking_comment` (
 
 LOCK TABLES `tourbooking_comment` WRITE;
 /*!40000 ALTER TABLE `tourbooking_comment` DISABLE KEYS */;
+INSERT INTO `tourbooking_comment` VALUES (3,'Bài viết rất hay','19:55:26.352494','19:55:26.352494',1,4),(4,'bài viết xuất sắc','19:55:53.076620','19:55:53.076620',1,5),(5,'Cho hỏi mình đặt vé du lịch ở đâu ạ ?','19:56:23.086487','19:56:23.086487',3,9);
 /*!40000 ALTER TABLE `tourbooking_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -468,7 +469,7 @@ CREATE TABLE `tourbooking_like` (
   KEY `tourbooking_like_news_id_af9b877b_fk_tourbooking_news_id` (`news_id`),
   CONSTRAINT `tourbooking_like_news_id_af9b877b_fk_tourbooking_news_id` FOREIGN KEY (`news_id`) REFERENCES `tourbooking_news` (`id`),
   CONSTRAINT `tourbooking_like_user_id_723c9750_fk_tourbooking_user_id` FOREIGN KEY (`user_id`) REFERENCES `tourbooking_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -477,6 +478,7 @@ CREATE TABLE `tourbooking_like` (
 
 LOCK TABLES `tourbooking_like` WRITE;
 /*!40000 ALTER TABLE `tourbooking_like` DISABLE KEYS */;
+INSERT INTO `tourbooking_like` VALUES (1,2,3),(2,4,1);
 /*!40000 ALTER TABLE `tourbooking_like` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -554,7 +556,7 @@ CREATE TABLE `tourbooking_ratingtour` (
   KEY `tourbooking_ratingtour_tour_id_80cf5079_fk_tourbooking_tours_id` (`tour_id`),
   CONSTRAINT `tourbooking_ratingtour_tour_id_80cf5079_fk_tourbooking_tours_id` FOREIGN KEY (`tour_id`) REFERENCES `tourbooking_tours` (`id`),
   CONSTRAINT `tourbooking_ratingtravel_user_id_bf24fbf2_fk_tourbooking_user_id` FOREIGN KEY (`user_id`) REFERENCES `tourbooking_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -563,6 +565,7 @@ CREATE TABLE `tourbooking_ratingtour` (
 
 LOCK TABLES `tourbooking_ratingtour` WRITE;
 /*!40000 ALTER TABLE `tourbooking_ratingtour` DISABLE KEYS */;
+INSERT INTO `tourbooking_ratingtour` VALUES (1,5,7,3),(2,4,7,7),(3,5,4,1);
 /*!40000 ALTER TABLE `tourbooking_ratingtour` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -585,7 +588,7 @@ CREATE TABLE `tourbooking_reviewtour` (
   KEY `tourbooking_reviewtravel_user_id_5b8b0264_fk_tourbooking_user_id` (`user_id`),
   CONSTRAINT `tourbooking_reviewtour_tour_id_e8b0ce3a_fk_tourbooking_tours_id` FOREIGN KEY (`tour_id`) REFERENCES `tourbooking_tours` (`id`),
   CONSTRAINT `tourbooking_reviewtravel_user_id_5b8b0264_fk_tourbooking_user_id` FOREIGN KEY (`user_id`) REFERENCES `tourbooking_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -594,6 +597,7 @@ CREATE TABLE `tourbooking_reviewtour` (
 
 LOCK TABLES `tourbooking_reviewtour` WRITE;
 /*!40000 ALTER TABLE `tourbooking_reviewtour` DISABLE KEYS */;
+INSERT INTO `tourbooking_reviewtour` VALUES (1,'Chuyến đi tuyệt vời','20:23:34.483481','20:23:34.483481',1,5),(2,'Mong công ty tạo ra thêm nhiều tour như vậy nữa','20:23:59.233421','20:23:59.233421',7,3);
 /*!40000 ALTER TABLE `tourbooking_reviewtour` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -740,4 +744,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-24 23:26:02
+-- Dump completed on 2021-08-28 20:27:34
