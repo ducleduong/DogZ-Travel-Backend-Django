@@ -18,10 +18,10 @@ METHOD `POST` - URL `/api/like/` - Param: `{"user": id_user, "news": id_news}`
 ### Create new comment from user 
 METHOD `POST` - URL `/api/comment/` - Param: `{"user": id_user, "content": "text of content", "news": id_news}`
 
-## Extra API
 ### Add rating for tour 
 METHOD `POST` - URL `/api/rating/` - Param: `{"user": id_user, "star": number_of_star, "tour": id_tour}`
 
+## Extra API
 ### Get list comment of 1 news
 METHOD `GET` - URL `/api/all-comment/<id_news>`
 
