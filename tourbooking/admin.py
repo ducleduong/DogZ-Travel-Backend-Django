@@ -10,7 +10,7 @@ class CustomForm(forms.Form):
     content = forms.CharField(widget=CKEditorUploadingWidget)
     class Meta:
         model = Tours
-        felds = '__all__'
+        fields = '__all__'
 
 class ToursAdmin(admin.ModelAdmin):
     forms = CustomForm

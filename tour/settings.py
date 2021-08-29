@@ -98,7 +98,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tourdb',
         'USER': 'root',
-        'PASSWORD': 'Talasamset2804',
+        'PASSWORD': '123456',
         'HOST': ''
     }
 }

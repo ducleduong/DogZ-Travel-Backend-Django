@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from rest_framework import generics, serializers, viewsets, request, permissions
 from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser
 from .models import *
 from .serializers import *
+
 
 def index(request):
     return render(request,'index.html')
@@ -10,12 +12,14 @@ def index(request):
 class UserViewSet(viewsets.ViewSet, generics.CreateAPIView,generics.RetrieveAPIView,generics.UpdateAPIView):
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
+    parser_classes = [MultiPartParser, ]
 
     def get_permissions(self):
         if self.action == 'retrieve':
             return [permissions.IsAuthenticated()]
         
         return [permissions.AllowAny()]
+
 
 
 class ToursViewSet(viewsets.ViewSet, generics.ListAPIView, generics.RetrieveAPIView):
