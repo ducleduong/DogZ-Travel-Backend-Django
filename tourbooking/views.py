@@ -33,7 +33,7 @@ class NewsViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
+    serializer_class = CommentPostSerializer
 
     def get_permissions(self):
         if self.action == 'list':
@@ -50,7 +50,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class ReviewTourViewSet(viewsets.ModelViewSet):
     queryset = ReviewTour.objects.all()
-    serializer_class = ReviewTourSerializer
+    serializer_class = ReviewPostSerializer
 
     def get_permissions(self):
         if self.action == 'list':

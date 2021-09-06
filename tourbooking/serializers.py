@@ -52,9 +52,20 @@ class ReviewTourSerializer(ModelSerializer):
     class Meta:
         model = ReviewTour
         fields = '__all__'
+    
+class ReviewPostSerializer(ModelSerializer):
+    class Meta:
+        model = ReviewTour
+        fields = '__all__'
+
 
 class CommentSerializer(ModelSerializer):
     user = UserSerializer()
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+class CommentPostSerializer(ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
