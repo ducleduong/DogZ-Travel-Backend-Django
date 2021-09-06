@@ -48,21 +48,25 @@ class NewsSerializer(ModelSerializer):
 
 #Review
 class ReviewTourSerializer(ModelSerializer):
+    user = UserSerializer()
     class Meta:
         model = ReviewTour
         fields = '__all__'
 
 class CommentSerializer(ModelSerializer):
+    user = UserSerializer()
     class Meta:
         model = Comment
         fields = '__all__'
 
 class RatingSerializer(ModelSerializer):
+    user = UserSerializer()
     class Meta:
         model = RatingTour
         fields = '__all__'
 
 class LikeSerializer(ModelSerializer):
+    user = UserSerializer()
     class Meta:
         model = RatingTour
         fields = '__all__'

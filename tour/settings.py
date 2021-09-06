@@ -69,6 +69,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
+OAUTH2_PROVIDER = {                                                                                                                                                                      
+    'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',                                                                                                          
+}
+
 ROOT_URLCONF = 'tour.urls'
 
 TEMPLATES = [
@@ -98,7 +102,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tourdb',
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': 'Talasamset2804',
         'HOST': ''
     }
 }
