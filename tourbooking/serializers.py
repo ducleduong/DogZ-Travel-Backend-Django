@@ -76,8 +76,18 @@ class RatingSerializer(ModelSerializer):
         model = RatingTour
         fields = '__all__'
 
+class RatingPostSerializer(ModelSerializer):
+    class Meta:
+        model = RatingTour
+        fields = '__all__'
+
 class LikeSerializer(ModelSerializer):
     user = UserSerializer()
+    class Meta:
+        model = RatingTour
+        fields = '__all__'
+
+class LikePostSerializer(ModelSerializer):
     class Meta:
         model = RatingTour
         fields = '__all__'

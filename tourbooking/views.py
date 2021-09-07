@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import render
 from rest_framework import generics, serializers, viewsets, request, permissions
 from rest_framework.response import Response
@@ -41,6 +42,11 @@ class CommentViewSet(viewsets.ModelViewSet):
         
         return [permissions.IsAuthenticated()]
 
+    
+class CommentGetViewSet(viewsets.ViewSet): 
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    
     def showListCommentOfNews(request,id):
         if request.method == 'GET':
             list = Comment.objects.filter(news=id)
@@ -58,7 +64,12 @@ class ReviewTourViewSet(viewsets.ModelViewSet):
         
         return [permissions.IsAuthenticated()]
 
-    def showListReviewOfNews(request,id):
+
+class ReviewGetViewSet(viewsets.ViewSet): 
+    queryset = ReviewTour.objects.all()
+    serializer_class = ReviewTourSerializer
+
+    def showListReviewOfTour(request,id):
         if request.method == 'GET':
             list = ReviewTour.objects.filter(tour=id)
             serializer = ReviewTourSerializer(list, many=True)
@@ -67,13 +78,18 @@ class ReviewTourViewSet(viewsets.ModelViewSet):
 
 class RatingViewSet(viewsets.ViewSet,generics.ListAPIView,generics.CreateAPIView):
     queryset = RatingTour.objects.all()
-    serializer_class = RatingSerializer
+    serializer_class = RatingPostSerializer
 
     def get_permissions(self):
         if self.action == 'list':
             return [permissions.AllowAny()]
         
         return [permissions.IsAuthenticated()]
+
+
+class RatingGetViewSet(viewsets.ViewSet): 
+    queryset = RatingTour.objects.all()
+    serializer_class = RatingSerializer
 
     def showListRatingOfTour(request,id):
         if request.method == 'GET':
@@ -91,6 +107,10 @@ class LikeViewSet(viewsets.ViewSet,generics.RetrieveDestroyAPIView,generics.List
             return [permissions.AllowAny()]
         
         return [permissions.IsAuthenticated()]
+
+class LikeGetViewSet(viewsets.ViewSet): 
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
 
     def showListLikeOfNews(request,id):
         if request.method == 'GET':

@@ -16,8 +16,8 @@ router.register('user',views.UserViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
     path('', views.index),
-    path('api/all-like/<int:id>/' ,views.LikeViewSet.showListLikeOfNews),
-    path('api/all-comment/<int:id>/', views.CommentViewSet.showListCommentOfNews),
-    path('api/all-rating/<int:id>/',views.RatingViewSet.showListRatingOfTour),
-    path('api/all-review/<int:id>/', views.ReviewTourViewSet.showListReviewOfNews)
+    path('api/all-like/<int:id>/' ,views.LikeGetViewSet.showListLikeOfNews),
+    path('api/all-comment/<int:id>/', views.CommentGetViewSet.showListCommentOfNews),
+    path('api/all-rating/<int:id>/',views.RatingGetViewSet.showListRatingOfTour),
+    path('api/all-review/<int:id>/', views.ReviewGetViewSet.showListReviewOfTour)
 ]
