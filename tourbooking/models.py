@@ -13,7 +13,7 @@ class User(AbstractUser):
     password = models.CharField(null=False, max_length=100)
     last_name = models.CharField(max_length=100, null=True)
     first_name = models.CharField(max_length=100, null=True)
-    avatar = models.ImageField(upload_to='avatar/', null = True)
+    avatar = models.ImageField(upload_to='avatar/', null = True, blank=True)
 
 #------LOCATION---------
 class Location(models.Model):
@@ -90,9 +90,12 @@ class ReviewTour(BaseReview):
 
 #Rating Tour
 class RatingTour(models.Model):
+    class Meta:
+        unique_together = (("user","tour"),)
+
     tour = models.ForeignKey(Tours,on_delete=SET_NULL,null=True)
     star = models.IntegerField(default=5)
-    user = models.OneToOneField(User,on_delete=CASCADE,unique=True)
+    user = models.ForeignKey(User,on_delete=CASCADE)
    
 
 #Comment News
@@ -101,8 +104,11 @@ class Comment(BaseReview):
 
 #Like News
 class Like(models.Model):
+    class Meta:
+        unique_together = (("user","news"),)
+
     news = models.ForeignKey(News,on_delete=CASCADE)
-    user = models.OneToOneField(User,on_delete=CASCADE,unique=True)
+    user = models.ForeignKey(User,on_delete=CASCADE)
 
 
 

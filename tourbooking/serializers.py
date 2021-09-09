@@ -8,7 +8,7 @@ from rest_framework import status
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','last_name','first_name','username','email','password']
+        fields = ['id','last_name','first_name','username','email','password','avatar']
         extra_kwargs = {
             'password': {'write_only':'true'}
         }

@@ -53,7 +53,10 @@ REST_FRAMEWORK = {
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 20
+    'PAGE_SIZE': 20,
+    'DEFAULT_PARSER_CLASSES':[
+        'rest_framework.parsers.JSONParser',
+    ]
 }
 
 MIDDLEWARE = [

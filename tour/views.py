@@ -22,7 +22,9 @@ class CustomTokenView(TokenView):
                 body['current_user'] = {
                     'id': token.user.id, 
                     'username': token.user.username, 
-                    'email': token.user.email
+                    'email': token.user.email,
+                    'first_name':token.user.first_name,
+                    'last_name': token.user.last_name,
                 }
                 body = json.dumps(body) 
         response = HttpResponse(content=body, status=status)
