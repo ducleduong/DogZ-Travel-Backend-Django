@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-rikzca+e@th%qgy9hg4d*41oc01jy(s4qmayltutoa!dfkb&ih
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 
 
@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'rest_framework',
     'oauth2_provider',
-    'corsheaders'
+    'corsheaders',
+    'django_filters',
+    'drf_yasg',
+    'rest_framework_swagger'
 ]
 
 REST_FRAMEWORK = {
@@ -56,7 +59,9 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
     'DEFAULT_PARSER_CLASSES':[
         'rest_framework.parsers.JSONParser',
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 MIDDLEWARE = [
@@ -72,9 +77,12 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-
+# OAUTH2_PROVIDER = {                                                                                                                                                                      
+#     'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',                                                                                                          
+# }
 
 ROOT_URLCONF = 'tour.urls'
+DATETIME_FORMAT = '%d-%m-%Y'
 
 TEMPLATES = [
     {
@@ -88,6 +96,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {  
+                    'staticfiles': 'django.templatetags.static',
+                 },
         },
     },
 ]
@@ -128,6 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'tourbooking.User'
+
 
 
 # Internationalization

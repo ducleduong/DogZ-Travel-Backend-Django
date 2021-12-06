@@ -1,23 +1,26 @@
 from django.db import router
 from django.urls import path
 from django.urls.conf import include
+from rest_framework import viewsets
 from . import views
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('tours',views.ToursViewSet)
-router.register('news',views.NewsViewSet)
+router.register(r'tours',views.ToursViewSet)
+router.register('news',views.ListNewsViewSet)
 router.register('comment',views.CommentViewSet)
-router.register('rating',views.RatingViewSet)
-router.register('review', views.ReviewTourViewSet)
 router.register('like',views.LikeViewSet)
+router.register('tourdetail',views.ToursDetailViewSet)
+router.register('category',views.CategoryTourViewSet)
+router.register('location',views.LocationViewSet)
+router.register('rating',views.RatingViewSet)
 router.register('user',views.UserViewSet)
+router.register('order',views.RegisterTourViewSet)
+router.register('register',views.RegisterUserViewSet)
+router.register('newsdetail',views.NewsDetailViewSet)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
-    path('', views.index),
-    path('api/all-like/<int:id>/' ,views.LikeGetViewSet.showListLikeOfNews),
-    path('api/all-comment/<int:id>/', views.CommentGetViewSet.showListCommentOfNews),
-    path('api/all-rating/<int:id>/',views.RatingGetViewSet.showListRatingOfTour),
-    path('api/all-review/<int:id>/', views.ReviewGetViewSet.showListReviewOfTour)
+    path(r'api/', include(router.urls)),
+    path(r'api/changepassword/', views.ChangePasswordView.as_view()),
+    path(r'api/statistical/', views.getSum),
 ]
