@@ -23,4 +23,5 @@ urlpatterns = [
     path(r'api/', include(router.urls)),
     path(r'api/changepassword/', views.ChangePasswordView.as_view()),
     path(r'api/statistical/', views.getSum),
+    path(r'api/sendmail/', views.sendEmail)
 ]

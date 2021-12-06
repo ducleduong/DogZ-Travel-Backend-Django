@@ -12,6 +12,10 @@ from django_filters import FilterSet, RangeFilter, CharFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from django.core.mail import send_mail
+from tour.settings import EMAIL_HOST_USER
+import locale
+locale.setlocale(locale.LC_ALL, 'vi_VN')
 
 
 
@@ -245,3 +249,10 @@ def getSum(request):
             total = OrderTour.objects.filter(date_add__year=i).aggregate(Sum('total'))['total__sum']
             results[i] = total if total else 0
         return Response(results)
+
+@api_view(['POST'])
+def sendEmail(request):
+    total = locale.currency(request.data['total'], grouping=True)
+    msg = 'Chào {},\nBạn đã đặt thành công {} với {} người lớn và {} trẻ em, tổng cộng {}\nCảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi!'.format(request.data['user_name'],request.data['tour_name'],request.data['adult'],request.data['children'],total)
+    send_mail("Hóa đơn đặt Tour", msg, EMAIL_HOST_USER, [request.data['email']], fail_silently=False)
+    return Response({'msg':'mail sent'})
